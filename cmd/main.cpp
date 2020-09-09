@@ -7,7 +7,7 @@
 #include <csignal>
 
 auto [maxCPU, maxThreads, root] = config::parse_config("/home/pycnick/dev/custom_server/httpd.conf");
-Server *app = new Server("4242", maxThreads, root);
+Server *app = new Server("4243", maxThreads, root);
 
 void signalHandler(int sigNum) {
     delete(app);

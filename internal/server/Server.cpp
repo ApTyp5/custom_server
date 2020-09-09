@@ -203,6 +203,14 @@ void Server::work(std::string root) {
         mu->unlock();
 
         auto data = read_data(fd);
+        if (data == "") {
+            auto response = new HttpResponse(STATUS_NOT_FOUND);
+            std::string resStringData = response->toString();
+            write_data(fd, resStringData);
+            delete(response);
+            close(fd);
+            return;
+        }
         auto req = new HttpRequest(data);
         HttpResponse *response;
 
